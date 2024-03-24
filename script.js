@@ -12,6 +12,7 @@ const addItem = (e) => {
 		const listItem = document.createElement('li');
 		listItem.appendChild(document.createTextNode(newItem));
 		const button = createButton('remove-item btn-link text-red');
+		listItem.appendChild(button);
 		itemList.appendChild(listItem);
 		itemInput.value = '';
 	}
