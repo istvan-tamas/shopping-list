@@ -18,6 +18,12 @@ const addItem = (e) => {
 	}
 };
 
+const removeItem = (e) => {
+	if (e.target.parentElement.classList.contains('remove-item')) {
+		console.log('click');
+	}
+};
+
 const createButton = (classes) => {
 	const button = document.createElement('button');
 	button.className = classes;
@@ -33,3 +39,4 @@ const createIcon = (classes) => {
 };
 
 itemForm.addEventListener('submit', addItem);
+itemList.addEventListener('click', removeItem);
