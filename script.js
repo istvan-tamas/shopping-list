@@ -2,6 +2,8 @@ const itemForm = document.querySelector('#item-form');
 const itemInput = document.querySelector('#item-input');
 const itemList = document.querySelector('#item-list');
 const clearButton = document.querySelector('#clear');
+const itemFilter = document.querySelector('#filter');
+const items = itemList.querySelectorAll('li');
 
 const addItem = (e) => {
 	e.preventDefault();
@@ -45,6 +47,15 @@ const clearItems = () => {
 	}
 };
 
+const checkUI = () => {
+	if (items.length === 0) {
+		clearButton.style.display = 'none';
+		itemFilter.style.display = 'none';
+	}
+};
+
 itemForm.addEventListener('submit', addItem);
 itemList.addEventListener('click', removeItem);
 clearButton.addEventListener('click', clearItems);
+
+checkUI();
