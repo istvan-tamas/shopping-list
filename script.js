@@ -12,6 +12,9 @@ const onAddItemSubmit = (e) => {
 		return;
 	} else {
 		addItemToDOM(newItem);
+
+		addItemToStorage(newItem);
+
 		checkUI();
 		itemInput.value = '';
 	}
@@ -35,10 +38,14 @@ const addItemToDOM = (item) => {
 };
 
 const addItemToStorage = (item) => {
-	let itemsFronStorage;
+	let itemsFromStorage;
 	if (localStorage.getItem('items') === null) {
-		itemsFronStorage = [];
+		itemsFromStorage = [];
+	} else {
+		itemsFromStorage = JSON.parse(localStorage.getItem('items'));
 	}
+	itemsFromStorage.push(item);
+	localStorage.setItem('items', JSON.stringify(itemsFromStorage));
 };
 
 const createButton = (classes) => {
