@@ -63,8 +63,23 @@ const checkUI = () => {
 	}
 };
 
+const filterItems = (e) => {
+	const items = itemList.querySelectorAll('li');
+	const text = e.target.value.toLowerCase();
+
+	items.forEach((item) => {
+		const itemName = item.firstChild.textContent.toLowerCase();
+		if (itemName.indexOf(text) != -1) {
+			item.style.display = 'flex';
+		} else {
+			item.style.display = 'none';
+		}
+	});
+};
+
 itemForm.addEventListener('submit', addItem);
 itemList.addEventListener('click', removeItem);
 clearButton.addEventListener('click', clearItems);
+itemFilter.addEventListener('input', filterItems);
 
 checkUI();
