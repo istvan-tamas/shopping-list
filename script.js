@@ -4,7 +4,12 @@ const itemList = document.querySelector('#item-list');
 const clearButton = document.querySelector('#clear');
 const itemFilter = document.querySelector('#filter');
 
-const displayItems = () => {};
+const displayItems = () => {
+	const itemsFromStorage = getItemsFromStorage();
+	itemsFromStorage.forEach((item) => {
+		addItemToDOM(item);
+	});
+};
 
 const onAddItemSubmit = (e) => {
 	e.preventDefault();
@@ -102,10 +107,14 @@ const getItemsFromStorage = () => {
 	return itemsFromStorage;
 };
 
-itemForm.addEventListener('submit', onAddItemSubmit);
-itemList.addEventListener('click', removeItem);
-clearButton.addEventListener('click', clearItems);
-itemFilter.addEventListener('input', filterItems);
-document.addEventListener('DOMContentLoaded', displayItems);
+const init = () => {
+	itemForm.addEventListener('submit', onAddItemSubmit);
+	itemList.addEventListener('click', removeItem);
+	clearButton.addEventListener('click', clearItems);
+	itemFilter.addEventListener('input', filterItems);
+	document.addEventListener('DOMContentLoaded', displayItems);
 
-checkUI();
+	checkUI();
+};
+
+init();
