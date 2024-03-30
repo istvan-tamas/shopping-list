@@ -4,6 +4,8 @@ const itemList = document.querySelector('#item-list');
 const clearButton = document.querySelector('#clear');
 const itemFilter = document.querySelector('#filter');
 
+const displayItems = () => {};
+
 const onAddItemSubmit = (e) => {
 	e.preventDefault();
 	const newItem = itemInput.value;
@@ -35,17 +37,6 @@ const addItemToDOM = (item) => {
 	const button = createButton('remove-item btn-link text-red');
 	listItem.appendChild(button);
 	itemList.appendChild(listItem);
-};
-
-const addItemToStorage = (item) => {
-	let itemsFromStorage;
-	if (localStorage.getItem('items') === null) {
-		itemsFromStorage = [];
-	} else {
-		itemsFromStorage = JSON.parse(localStorage.getItem('items'));
-	}
-	itemsFromStorage.push(item);
-	localStorage.setItem('items', JSON.stringify(itemsFromStorage));
 };
 
 const createButton = (classes) => {
@@ -95,9 +86,26 @@ const filterItems = (e) => {
 	});
 };
 
+const addItemToStorage = (item) => {
+	const itemsFromStorage = getItemsFromStorage();
+	itemsFromStorage.push(item);
+	localStorage.setItem('items', JSON.stringify(itemsFromStorage));
+};
+
+const getItemsFromStorage = () => {
+	let itemsFromStorage;
+	if (localStorage.getItem('items') === null) {
+		itemsFromStorage = [];
+	} else {
+		itemsFromStorage = JSON.parse(localStorage.getItem('items'));
+	}
+	return itemsFromStorage;
+};
+
 itemForm.addEventListener('submit', onAddItemSubmit);
 itemList.addEventListener('click', removeItem);
 clearButton.addEventListener('click', clearItems);
 itemFilter.addEventListener('input', filterItems);
+document.addEventListener('DOMContentLoaded', displayItems);
 
 checkUI();
