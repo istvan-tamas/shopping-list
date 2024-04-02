@@ -3,6 +3,7 @@ const itemInput = document.querySelector('#item-input');
 const itemList = document.querySelector('#item-list');
 const clearButton = document.querySelector('#clear');
 const itemFilter = document.querySelector('#filter');
+let isEditMode = false;
 
 const displayItems = () => {
 	const itemsFromStorage = getItemsFromStorage();
@@ -27,9 +28,16 @@ const onAddItemSubmit = (e) => {
 	}
 };
 
+const setItemToEdit = (item) => {
+	isEditMode = true;
+	itemInput.classList.add('edit-mode');
+};
+
 const onClickItem = (e) => {
 	if (e.target.parentElement.classList.contains('remove-item')) {
 		removeItem(e.target.parentElement.parentElement);
+	} else {
+		setItemToEdit(e.target);
 	}
 };
 
