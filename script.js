@@ -3,6 +3,7 @@ const itemInput = document.querySelector('#item-input');
 const itemList = document.querySelector('#item-list');
 const clearButton = document.querySelector('#clear');
 const itemFilter = document.querySelector('#filter');
+const formBtn = itemForm.querySelector('button');
 let isEditMode = false;
 
 const displayItems = () => {
@@ -29,8 +30,14 @@ const onAddItemSubmit = (e) => {
 };
 
 const setItemToEdit = (item) => {
+	itemList.querySelectorAll('li').forEach((i) => {
+		i.classList.remove('edit-mode');
+	});
 	isEditMode = true;
 	itemInput.classList.add('edit-mode');
+	formBtn.innerHTML = '<i class="fa-solid fa-pen"> Edit Item</i>';
+	formBtn.style.backgroundColor = '#228B22';
+	itemInput.value = item.textContent;
 };
 
 const onClickItem = (e) => {
