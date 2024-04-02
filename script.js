@@ -27,13 +27,26 @@ const onAddItemSubmit = (e) => {
 	}
 };
 
-const removeItem = (e) => {
+const onClickItem = (e) => {
 	if (e.target.parentElement.classList.contains('remove-item')) {
-		if (confirm('Are you sure?')) {
-			e.target.parentElement.parentElement.remove();
-			checkUI();
-		}
+		removeItem(e.target.parentElement.parentElement);
 	}
+};
+
+const removeItem = (item) => {
+	if (confirm('Are you sure?')) {
+		item.remove();
+		removeItemFromStorage(item.textContent);
+		checkUI();
+	}
+};
+
+const removeItemFromStorage = (item) => {
+	const itemsFromStorage = getItemsFromStorage();
+
+	itemsFromStorage = itemsFromStorage.filter((i) => i !== item);
+
+	localStorage.setItem('items', JSON.stringify(itemsFromStorage));
 };
 
 const addItemToDOM = (item) => {
@@ -109,7 +122,7 @@ const getItemsFromStorage = () => {
 
 const init = () => {
 	itemForm.addEventListener('submit', onAddItemSubmit);
-	itemList.addEventListener('click', removeItem);
+	itemList.addEventListener('click', onClickItem);
 	clearButton.addEventListener('click', clearItems);
 	itemFilter.addEventListener('input', filterItems);
 	document.addEventListener('DOMContentLoaded', displayItems);
