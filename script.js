@@ -75,7 +75,7 @@ const clearItems = () => {
 	while (itemList.firstChild) {
 		itemList.removeChild(itemList.firstChild);
 	}
-
+	localStorage.removeItem('items');
 	checkUI();
 };
 
