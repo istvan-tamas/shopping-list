@@ -42,7 +42,7 @@ const removeItem = (item) => {
 };
 
 const removeItemFromStorage = (item) => {
-	const itemsFromStorage = getItemsFromStorage();
+	let itemsFromStorage = getItemsFromStorage();
 
 	itemsFromStorage = itemsFromStorage.filter((i) => i !== item);
 
