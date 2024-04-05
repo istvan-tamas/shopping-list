@@ -19,14 +19,20 @@ const onAddItemSubmit = (e) => {
 	if (newItem === '') {
 		alert('Please add an item');
 		return;
-	} else {
-		addItemToDOM(newItem);
-
-		addItemToStorage(newItem);
-
-		checkUI();
-		itemInput.value = '';
 	}
+	if (isEditMode) {
+		const itemToEdit = itemList.querySelector('.edit-mode');
+		removeItemFromStorage(itemToEdit.textContent);
+		itemToEdit.classList.remove('edit-mode');
+		itemToEdit.remove();
+		isEditMode = false;
+	}
+	addItemToDOM(newItem);
+
+	addItemToStorage(newItem);
+
+	checkUI();
+	itemInput.value = '';
 };
 
 const setItemToEdit = (item) => {
