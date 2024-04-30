@@ -49,7 +49,6 @@ const setItemToEdit = (item) => {
 	formBtn.innerHTML = '<i class="fa-solid fa-pen"> Edit item</i>';
 	formBtn.style.backgroundColor = '#228B22';
 	itemInput.value = item.textContent;
-	console.log(item);
 };
 
 const onClickItem = (e) => {
@@ -62,7 +61,7 @@ const onClickItem = (e) => {
 
 const checkIfItemExists = (item) => {
 	const itemsFromStorage = getItemsFromStorage();
-	itemsFromStorage.includes(item);
+	return itemsFromStorage.includes(item);
 };
 
 const removeItem = (item) => {
