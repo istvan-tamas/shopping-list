@@ -21,10 +21,10 @@ const onAddItemSubmit = (e) => {
 		return;
 	}
 	if (isEditMode) {
-		const itemToEdit = itemList.querySelector('edit-mode');
-		removeItemFromStorage(itemToEdit);
+		const itemToEdit = itemList.querySelector('.edit-mode');
 		itemToEdit.classList.remove('edit-mode');
 		itemToEdit.remove();
+		removeItemFromStorage(itemToEdit);
 		isEditMode = false;
 	} else {
 		if (checkIfItemExists(newItem)) {
