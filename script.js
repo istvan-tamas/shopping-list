@@ -113,7 +113,8 @@ const clearItems = () => {
 const checkUI = () => {
 	itemInput.value = '';
 
-	const items = itemList.querySelectorAll('li');
+	const items = getItemsFromStorage();
+
 	if (items.length === 0) {
 		clearButton.style.display = 'none';
 		itemFilter.style.display = 'none';
