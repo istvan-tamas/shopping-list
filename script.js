@@ -21,8 +21,8 @@ const onAddItemSubmit = (e) => {
 		return;
 	}
 	if (isEditMode) {
-		const itemToEdit = itemList.querySelector('.edit-mode');
-		removeItemFromStorage(itemToEdit.textContent);
+		const itemToEdit = itemList.querySelector('edit-mode');
+		removeItemFromStorage(itemToEdit);
 		itemToEdit.classList.remove('edit-mode');
 		itemToEdit.remove();
 		isEditMode = false;
@@ -45,10 +45,11 @@ const setItemToEdit = (item) => {
 		i.classList.remove('edit-mode');
 	});
 	isEditMode = true;
-	itemInput.classList.add('edit-mode');
-	formBtn.innerHTML = '<i class="fa-solid fa-pen"> Edit Item</i>';
+	item.classList.add('edit-mode');
+	formBtn.innerHTML = '<i class="fa-solid fa-pen"> Edit item</i>';
 	formBtn.style.backgroundColor = '#228B22';
 	itemInput.value = item.textContent;
+	console.log(item);
 };
 
 const onClickItem = (e) => {
